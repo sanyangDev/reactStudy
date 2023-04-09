@@ -37,23 +37,32 @@
       </div>
     );
   }
-  // function KmToMiles(){
-  //   const [amount, setAmount] = React.useState(0);
-  //   const [flip, setFlip] = React.useState(false);
-  //   const onChange=(event)=> {
-  //     setAmount(event.target.value);
-  //   };
-  //   return (
-  //     <div>
-  //       <div>
-  //         <label htmlFor="Km">Km</label>  
-  //         <input id="Km" type="number" placeholder="KM" onChange={onChange} value={filp ? amount*1.609 : amount} disabled={flip}/>
-  //         <label htmlFor="Miles">Miles</label>  
-  //         <input id="Miles" type="number" placeholder="Miles" onChange={onChange} value={flip ? amount : amount/1.609} disabled={!flip}/>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  function KmToMiles(){
+    const [amount, setAmount] = React.useState(0);
+    const [flip, setFlip] = React.useState(false);
+    const onFlip = ()=> {
+      reset();
+      setFlip((current) => !current);
+    };
+    const reset = () => {
+      setAmount(0);
+    };
+    const onChange=(event)=> {
+      setAmount(event.target.value);
+    };
+    return (
+      <div>
+        <div>
+          <label htmlFor="Km">Km</label>  
+          <input id="Km" type="number" placeholder="KM" onChange={onChange} value={flip ? amount*1.609 : amount} disabled={flip}/>
+          <label htmlFor="Miles">Miles</label>  
+          <input id="Miles" type="number" placeholder="Miles" onChange={onChange} value={flip ? amount : amount/1.609} disabled={!flip}/>
+        </div>
+        <button onClick={reset}>Reset</button>
+        <button onClick={onFlip}>Flip</button>
+      </div>
+    );
+  }
   function App() {
     const [index, setIndex] = React.useState("xx");
     const onSelect = (event) => {
